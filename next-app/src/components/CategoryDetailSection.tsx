@@ -66,17 +66,17 @@ export default function CategoryDetailSection() {
   const accentColor = currentCat?.color || "#DC1E1E";
 
   return (
-    <section className="py-16 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[var(--bg-secondary)] to-transparent" />
+    <section className="cursor-pointer cursor-pointer py-16 relative">
+      <div className="cursor-pointer cursor-pointer absolute inset-0 bg-gradient-to-b from-transparent via-[var(--bg-secondary)] to-transparent" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
+      <div className="cursor-pointer cursor-pointer relative z-10 max-w-7xl mx-auto px-6">
         {/* Category tabs */}
-        <div className="flex items-center gap-2 mb-8 overflow-x-auto pb-2 scrollbar-none">
+        <div className="cursor-pointer cursor-pointer flex items-center gap-2 mb-8 overflow-x-auto pb-2 scrollbar-none">
           {categories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setActiveTab(cat.id)}
-              className="flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium whitespace-nowrap transition-all duration-300"
+              className="cursor-pointer cursor-pointer flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium whitespace-nowrap transition-all duration-300"
               style={{
                 backgroundColor: activeTab === cat.id ? cat.color + "18" : "var(--bg-card)",
                 color: activeTab === cat.id ? cat.color : "var(--text-secondary)",
@@ -84,33 +84,33 @@ export default function CategoryDetailSection() {
                 boxShadow: activeTab === cat.id ? "0 0 20px " + cat.color + "15" : "none",
               }}
             >
-              <span className="text-base">{cat.icon}</span>
+              <span className="cursor-pointer cursor-pointer text-base">{cat.icon}</span>
               {cat.name}
             </button>
           ))}
         </div>
 
         {/* View controls */}
-        <div className="flex items-center justify-between mb-8">
-          <div className="flex items-center gap-3">
-            <div className="w-1 h-6 rounded-full" style={{ backgroundColor: accentColor }} />
-            <h2 className="text-xl font-bold text-[var(--text-primary)]">
+        <div className="cursor-pointer cursor-pointer flex items-center justify-between mb-8">
+          <div className="cursor-pointer cursor-pointer flex items-center gap-3">
+            <div className="cursor-pointer cursor-pointer w-1 h-6 rounded-full" style={{ backgroundColor: accentColor }} />
+            <h2 className="cursor-pointer cursor-pointer text-xl font-bold text-[var(--text-primary)]">
               {currentCat?.name}
             </h2>
-            <span className="text-sm text-[var(--text-muted)]">({books.length} 本)</span>
+            <span className="cursor-pointer cursor-pointer text-sm text-[var(--text-muted)]">({books.length} 本)</span>
           </div>
 
           {/* View mode toggle */}
-          <div className="flex items-center gap-1 p-1 rounded-lg border border-[var(--border-color)] bg-[var(--bg-card)]">
+          <div className="cursor-pointer cursor-pointer flex items-center gap-1 p-1 rounded-lg border border-[var(--border-color)] bg-[var(--bg-card)]">
             <button
               onClick={() => setViewMode("grid")}
-              className="p-2 rounded-md transition-all duration-200"
+              className="cursor-pointer cursor-pointer p-2 rounded-md transition-all duration-200"
               style={{
                 backgroundColor: viewMode === "grid" ? accentColor + "15" : "transparent",
                 color: viewMode === "grid" ? accentColor : "var(--text-muted)",
               }}
             >
-              <svg className="w-4 h-4" viewBox="0 0 16 16" fill="currentColor">
+              <svg className="cursor-pointer cursor-pointer w-4 h-4" viewBox="0 0 16 16" fill="currentColor">
                 <rect x="1" y="1" width="6" height="6" rx="1" />
                 <rect x="9" y="1" width="6" height="6" rx="1" />
                 <rect x="1" y="9" width="6" height="6" rx="1" />
@@ -119,13 +119,13 @@ export default function CategoryDetailSection() {
             </button>
             <button
               onClick={() => setViewMode("list")}
-              className="p-2 rounded-md transition-all duration-200"
+              className="cursor-pointer cursor-pointer p-2 rounded-md transition-all duration-200"
               style={{
                 backgroundColor: viewMode === "list" ? accentColor + "15" : "transparent",
                 color: viewMode === "list" ? accentColor : "var(--text-muted)",
               }}
             >
-              <svg className="w-4 h-4" viewBox="0 0 16 16" fill="currentColor">
+              <svg className="cursor-pointer cursor-pointer w-4 h-4" viewBox="0 0 16 16" fill="currentColor">
                 <rect x="1" y="1" width="14" height="3" rx="1" />
                 <rect x="1" y="6.5" width="14" height="3" rx="1" />
                 <rect x="1" y="12" width="14" height="3" rx="1" />
@@ -136,51 +136,51 @@ export default function CategoryDetailSection() {
 
         {/* Book grid / list */}
         {viewMode === "grid" ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="cursor-pointer cursor-pointer grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {books.map((book) => (
               <EbookCard key={book.id} book={book} />
             ))}
           </div>
         ) : (
-          <div className="space-y-4">
+          <div className="cursor-pointer cursor-pointer space-y-4">
             {books.map((book) => {
               const discount = Math.round((1 - book.price / book.originalPrice) * 100);
               return (
                 <div
                   key={book.id}
-                  className="group card-glow bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-0.5 flex"
+                  className="cursor-pointer cursor-pointer group card-glow bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-0.5 flex"
                 >
                   {/* Mini cover */}
-                  <div className="w-24 sm:w-32 flex-shrink-0 bg-gradient-to-br from-[var(--bg-card-hover)] to-[var(--bg-primary)] flex items-center justify-center relative overflow-hidden">
-                    <div className="absolute inset-0 opacity-[0.05]" style={{
+                  <div className="cursor-pointer cursor-pointer w-24 sm:w-32 flex-shrink-0 bg-gradient-to-br from-[var(--bg-card-hover)] to-[var(--bg-primary)] flex items-center justify-center relative overflow-hidden">
+                    <div className="cursor-pointer cursor-pointer absolute inset-0 opacity-[0.05]" style={{
                       backgroundImage: "linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)",
                       backgroundSize: "16px 16px",
                     }} />
-                    <span className="text-2xl opacity-30 relative z-[1]">📖</span>
+                    <span className="cursor-pointer cursor-pointer text-2xl opacity-30 relative z-[1]">📖</span>
                   </div>
 
                   {/* Content */}
-                  <div className="flex-1 p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-1">
-                        <h4 className="text-sm font-bold text-[var(--text-primary)] line-clamp-1">{book.title}</h4>
-                        <span className="px-1.5 py-0.5 rounded text-[9px] font-bold text-white whitespace-nowrap" style={{ backgroundColor: accentColor }}>
+                  <div className="cursor-pointer cursor-pointer flex-1 p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div className="cursor-pointer cursor-pointer flex-1 min-w-0">
+                      <div className="cursor-pointer cursor-pointer flex items-center gap-2 mb-1">
+                        <h4 className="cursor-pointer cursor-pointer text-sm font-bold text-[var(--text-primary)] line-clamp-1">{book.title}</h4>
+                        <span className="cursor-pointer cursor-pointer px-1.5 py-0.5 rounded text-[9px] font-bold text-white whitespace-nowrap" style={{ backgroundColor: accentColor }}>
                           -{discount}%
                         </span>
                       </div>
-                      <p className="text-xs text-[var(--text-muted)] mb-2">{book.author}</p>
-                      <p className="text-xs text-[var(--text-secondary)] line-clamp-1 leading-relaxed hidden sm:block">{book.description}</p>
-                      <div className="flex items-center gap-3 mt-2">
-                        <div className="flex items-center gap-1">
-                          <svg className="w-3 h-3" viewBox="0 0 20 20" fill={accentColor} style={{ opacity: 0.8 }}>
+                      <p className="cursor-pointer cursor-pointer text-xs text-[var(--text-muted)] mb-2">{book.author}</p>
+                      <p className="cursor-pointer cursor-pointer text-xs text-[var(--text-secondary)] line-clamp-1 leading-relaxed hidden sm:block">{book.description}</p>
+                      <div className="cursor-pointer cursor-pointer flex items-center gap-3 mt-2">
+                        <div className="cursor-pointer cursor-pointer flex items-center gap-1">
+                          <svg className="cursor-pointer cursor-pointer w-3 h-3" viewBox="0 0 20 20" fill={accentColor} style={{ opacity: 0.8 }}>
                             <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                           </svg>
-                          <span className="text-xs text-[var(--text-secondary)]">{book.rating}</span>
+                          <span className="cursor-pointer cursor-pointer text-xs text-[var(--text-secondary)]">{book.rating}</span>
                         </div>
-                        <span className="text-[10px] text-[var(--text-muted)]">({book.readers.toLocaleString()} 人读过)</span>
-                        <div className="flex gap-1">
+                        <span className="cursor-pointer cursor-pointer text-[10px] text-[var(--text-muted)]">({book.readers.toLocaleString()} 人读过)</span>
+                        <div className="cursor-pointer cursor-pointer flex gap-1">
                           {book.tags.slice(0, 2).map((tag) => (
-                            <span key={tag} className="px-1.5 py-0.5 rounded text-[9px] border" style={{
+                            <span key={tag} className="cursor-pointer cursor-pointer px-1.5 py-0.5 rounded text-[9px] border" style={{
                               backgroundColor: accentColor + "08",
                               borderColor: accentColor + "15",
                               color: "var(--text-muted)"
@@ -190,12 +190,12 @@ export default function CategoryDetailSection() {
                       </div>
                     </div>
 
-                    <div className="flex sm:flex-col items-center sm:items-end gap-3 sm:gap-2 flex-shrink-0">
-                      <div className="flex items-baseline gap-1">
-                        <span className="text-lg font-black" style={{ color: accentColor }}>¥{book.price}</span>
-                        <span className="text-[10px] text-[var(--text-muted)] line-through">¥{book.originalPrice}</span>
+                    <div className="cursor-pointer cursor-pointer flex sm:flex-col items-center sm:items-end gap-3 sm:gap-2 flex-shrink-0">
+                      <div className="cursor-pointer cursor-pointer flex items-baseline gap-1">
+                        <span className="cursor-pointer cursor-pointer text-lg font-black" style={{ color: accentColor }}>¥{book.price}</span>
+                        <span className="cursor-pointer cursor-pointer text-[10px] text-[var(--text-muted)] line-through">¥{book.originalPrice}</span>
                       </div>
-                      <button className="px-4 py-1.5 rounded-lg text-xs font-bold transition-all duration-300 whitespace-nowrap"
+                      <button className="cursor-pointer cursor-pointer px-4 py-1.5 rounded-lg text-xs font-bold transition-all duration-300 whitespace-nowrap"
                         style={{ backgroundColor: accentColor + "15", color: accentColor, border: "1px solid " + accentColor + "30" }}
                       >立即购买</button>
                     </div>

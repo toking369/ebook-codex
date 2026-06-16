@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useSyncExternalStore } from "react";
 
 interface Book {
   id: number;
@@ -38,19 +38,18 @@ const coverThemesLight: Record<number, CoverTheme> = {
   4: { gradient: "from-[#fdf8f0] via-[#f8eeda] to-[#f0e2c4]", accentColor: "#C89020", icon: "\ud83d\udcc8", badgeText: "\u8d8b\u52bf\u7ecf\u5178", gridOpacity: "0.04", iconBg: "#C890200A", iconBorder: "#C8902018" },
 };
 
-export default function EbookCard({ book }: { book: Book }) {
-  const [isDark, setIsDark] = useState(true);
+function subscribeToTheme(callback: () => void) {
+  const observer = new MutationObserver(callback);
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+  return () => observer.disconnect();
+}
 
-  useEffect(() => {
-    const checkTheme = () => {
-      const theme = document.documentElement.getAttribute("data-theme");
-      setIsDark(theme !== "light");
-    };
-    checkTheme();
-    const observer = new MutationObserver(checkTheme);
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
-    return () => observer.disconnect();
-  }, []);
+function getThemeSnapshot() {
+  return document.documentElement.getAttribute("data-theme") !== "light";
+}
+
+export default function EbookCard({ book }: { book: Book }) {
+  const isDark = useSyncExternalStore(subscribeToTheme, getThemeSnapshot, () => true);
 
   const discount = Math.round((1 - book.price / book.originalPrice) * 100);
   const themes = isDark ? coverThemesDark : coverThemesLight;

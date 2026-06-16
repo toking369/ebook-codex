@@ -29,7 +29,7 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggle}
-      className="relative w-9 h-9 rounded-lg flex items-center justify-center border border-[var(--border-color)] bg-[var(--bg-card)] hover:border-[var(--red-primary)]/40 transition-all duration-300 group"
+      className="relative w-9 h-9 rounded-lg cursor-pointer flex items-center justify-center border border-[var(--border-color)] bg-[var(--bg-card)] hover:border-[var(--red-primary)]/40 transition-all duration-300 group"
       aria-label={isDark ? "切换到亮色模式" : "切换到暗色模式"}
       title={isDark ? "亮色模式" : "暗色模式"}
     >
