@@ -1,29 +1,20 @@
 
 "use client";
 
-import { useState, useEffect } from "react";
+import { useSyncExternalStore } from "react";
+
+function subscribeTheme(cb: () => void){var obs=new MutationObserver(cb);obs.observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});return function(){obs.disconnect()}}
+function getTheme(): boolean{return document.documentElement.getAttribute("data-theme")!=="light"}
 
 export default function ThemeToggle() {
-  const [isDark, setIsDark] = useState(true);
-
-  useEffect(() => {
-    const stored = localStorage.getItem("theme");
-    if (stored === "light") {
-      setIsDark(false);
-      document.documentElement.setAttribute("data-theme", "light");
-    } else {
-      setIsDark(true);
-      document.documentElement.setAttribute("data-theme", "dark");
-    }
-  }, []);
+  const isDark = useSyncExternalStore(subscribeTheme, getTheme, function(){return true});
 
   const toggle = () => {
     const next = !isDark;
-    setIsDark(next);
     document.documentElement.classList.add("transitioning");
     document.documentElement.setAttribute("data-theme", next ? "dark" : "light");
-    setTimeout(() => document.documentElement.classList.remove("transitioning"), 400);
-    localStorage.setItem("theme", next ? "dark" : "light");
+    setTimeout(function(){document.documentElement.classList.remove("transitioning")},400);
+    try{localStorage.setItem("theme", next ? "dark" : "light")}catch(e){}
   };
 
   return (

@@ -34,9 +34,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN" suppressHydrationWarning>
-      <body
-        className={`${inter.variable} ${notoSerifSC.variable} font-sans antialiased`}
-      >
+<body className={`${inter.variable} ${notoSerifSC.variable} font-sans antialiased`}>
+        <script dangerouslySetInnerHTML={{__html:"(function(){try{var t=localStorage.getItem('theme');document.documentElement.setAttribute('data-theme',t||'dark')}catch(e){}})()"}} />
+        
+
         {children}
       </body>
     </html>
