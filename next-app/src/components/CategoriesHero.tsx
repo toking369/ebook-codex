@@ -1,68 +1,11 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
+import { categories } from "@/data/books";
 
-const categories = [
-  {
-    id: "k-line",
-    name: "K线技术",
-    count: 86,
-    icon: "📊",
-    description: "K线形态、组合分析",
-    color: "#DC1E1E",
-    popular: ["K线入门", "实战定式", "组合分析"],
-  },
-  {
-    id: "trend",
-    name: "趋势分析",
-    count: 64,
-    icon: "📈",
-    description: "均线、趋势线、通道",
-    color: "#E8A020",
-    popular: ["趋势线", "均线系统", "波段理论"],
-  },
-  {
-    id: "psychology",
-    name: "交易心理",
-    count: 42,
-    icon: "🧠",
-    description: "纪律、心态、博弈",
-    color: "#8B5CF6",
-    popular: ["交易纪律", "心态管理", "行为金融"],
-  },
-  {
-    id: "quant",
-    name: "量化策略",
-    count: 38,
-    icon: "🤖",
-    description: "算法、回测、系统",
-    color: "#06B6D4",
-    popular: ["量化基础", "策略设计", "回测框架"],
-  },
-  {
-    id: "futures",
-    name: "期货衍生品",
-    count: 51,
-    icon: "⚡",
-    description: "期货、期权、对冲",
-    color: "#F97316",
-    popular: ["期货入门", "期权策略", "风险对冲"],
-  },
-  {
-    id: "philosophy",
-    name: "投资理念",
-    count: 73,
-    icon: "🎯",
-    description: "价值投资、哲学",
-    color: "#22C55E",
-    popular: ["价值投资", "赚止损", "资金管理"],
-  },
-];
+
 
 export default function CategoriesHero() {
-  const [activeCategory, setActiveCategory] = useState<string | null>(null);
-
   return (
     <section className="relative pt-32 pb-16 overflow-hidden">
       <div className="absolute inset-0">
@@ -95,10 +38,10 @@ export default function CategoriesHero() {
         {/* Category grid - hero cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {categories.map((cat) => (
-            <div
+            <Link
               key={cat.id}
-              onClick={() => setActiveCategory(cat.id === activeCategory ? null : cat.id)}
-              className="group card-glow bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl p-6 cursor-pointer transition-all duration-300 hover:-translate-y-1 relative overflow-hidden"
+              href={"/categories/" + cat.id}
+              className="group card-glow bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl p-6 cursor-pointer transition-all duration-300 hover:-translate-y-1 relative overflow-hidden block"
             >
               {/* Top accent bar */}
               <div className="absolute top-0 left-0 right-0 h-[3px] opacity-60" style={{ backgroundColor: cat.color }} />
@@ -137,7 +80,7 @@ export default function CategoriesHero() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

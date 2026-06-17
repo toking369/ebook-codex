@@ -127,7 +127,7 @@ export default function EbookCard({ book }: { book: Book }) {
         </div>
         <div className="flex items-center justify-between">
           <div className="flex items-baseline gap-1.5"><span className="text-lg font-black" style={{color: a}}>￥{book.price}</span><span className="text-[10px] text-[var(--text-muted)] line-through">￥{book.originalPrice}</span></div>
-          <button className="px-4 py-1.5 rounded-lg text-xs font-bold transition-all duration-300 group/btn" style={{backgroundColor: a + "15", color: a, border: "1px solid " + a + "30"}}
+          <button className="px-4 py-1.5 rounded-lg text-xs font-bold transition-all duration-300 group/btn cursor-pointer" style={{backgroundColor: a + "15", color: a, border: "1px solid " + a + "30"}}
           >立即购买</button>
         </div>
       </div>
