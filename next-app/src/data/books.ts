@@ -1,0 +1,130 @@
+export interface Book {
+  id: number;
+  title: string;
+  author: string;
+  price: number;
+  originalPrice: number;
+  rating: number;
+  readers: number;
+  tags: string[];
+  description: string;
+  category: string;
+  isNew?: boolean;
+  isHot?: boolean;
+}
+
+export interface Category {
+  id: string;
+  name: string;
+  count: number;
+  icon: string;
+  description: string;
+  color: string;
+  popular: string[];
+}
+
+export const categories = [
+  {
+    id: "k-line",
+    name: "K线技术",
+    count: 86,
+    icon: "📊",
+    description: "K线形态、组合分析",
+    color: "#DC1E1E",
+    popular: ["K线入门", "实战定式", "组合分析"],
+  },
+  {
+    id: "trend",
+    name: "趋势分析",
+    count: 64,
+    icon: "📈",
+    description: "均线、趋势线、通道",
+    color: "#E8A020",
+    popular: ["趋势线", "均线系统", "波段理论"],
+  },
+  {
+    id: "psychology",
+    name: "交易心理",
+    count: 42,
+    icon: "🧠",
+    description: "纪律、心态、博弈",
+    color: "#8B5CF6",
+    popular: ["交易纪律", "心态管理", "行为金融"],
+  },
+  {
+    id: "quant",
+    name: "量化策略",
+    count: 38,
+    icon: "🤖",
+    description: "算法、回测、系统",
+    color: "#06B6D4",
+    popular: ["量化基础", "策略设计", "回测框架"],
+  },
+  {
+    id: "futures",
+    name: "期货衍生品",
+    count: 51,
+    icon: "⚡",
+    description: "期货、期权、对冲",
+    color: "#F97316",
+    popular: ["期货入门", "期权策略", "风险对冲"],
+  },
+  {
+    id: "philosophy",
+    name: "投资理念",
+    count: 73,
+    icon: "🎯",
+    description: "价值投资、哲学",
+    color: "#22C55E",
+    popular: ["价值投资", "赚止损", "资金管理"],
+  },
+];
+
+export const allBooks: Book[] = [
+  // K线技术
+  { id: 1, title: "K线操盘定式", author: "陈培树", price: 39.9, originalPrice: 79.9, rating: 4.8, readers: 2340, tags: ["K线", "技术分析", "入门"], description: "从K线组合到实战定式，系统掌握K线操盘精髓。", category: "k-line", isHot: true },
+  { id: 5, title: "K线图一看就懂", author: "李明辉", price: 29.9, originalPrice: 58.0, rating: 4.6, readers: 1850, tags: ["K线图", "入门", "图解"], description: "零基础学K线，配合大量图解案例，一目了然。", category: "k-line" },
+  { id: 6, title: "K线形态实战技术", author: "张文峰", price: 45.0, originalPrice: 88.0, rating: 4.7, readers: 1620, tags: ["K线形态", "实战", "超趋"], description: "精解经典K线形态，带你识别主力趋势与转折。", category: "k-line" },
+  { id: 7, title: "70种K线组合形态整理", author: "秘籍编写组", price: 19.9, originalPrice: 39.0, rating: 4.5, readers: 3210, tags: ["K线组合", "实用", "手册"], description: "常见K线组合形态全录，可作为交易参考手册随时查阅。", category: "k-line", isHot: true },
+  { id: 19, title: "KDJ指标入门与实战精解", author: "张三明", price: 24.9, originalPrice: 49.0, rating: 4.4, readers: 1430, tags: ["KDJ", "技术指标", "入门"], description: "深入浅出解析KDJ指标，配合大量实战案例教你识别买卖点。", category: "k-line" },
+  { id: 20, title: "EXPMA八大妙用", author: "技术分析研究会", price: 15.0, originalPrice: 30.0, rating: 4.3, readers: 980, tags: ["EXPMA", "均线", "技巧"], description: "EXPMA指标的八种高级用法，让你的分析更精准。", category: "k-line" },
+
+  // 趋势分析
+  { id: 3, title: "股市趋势技术分析", author: "约翰·迈吉", price: 59.9, originalPrice: 128.0, rating: 4.9, readers: 5200, tags: ["趋势分析", "经典", "理论"], description: "技术分析圣经级著作，趋势交易者必读书目。", category: "trend", isHot: true, isNew: true },
+  { id: 8, title: "1250均线系统法则", author: "张卫星", price: 34.9, originalPrice: 68.0, rating: 4.6, readers: 1450, tags: ["均线", "系统", "三线开花"], description: "三线开花战法详解，掌握均线系统的核心用法。", category: "trend" },
+  { id: 9, title: "波段交易技术入门与技巧", author: "建格努尔", price: 39.9, originalPrice: 78.0, rating: 4.7, readers: 1980, tags: ["波段", "入门", "实战"], description: "系统学习波段交易法，把握行情波段波动节奏。", category: "trend" },
+  { id: 21, title: "趋势交易系统", author: "法兰克·皮尔尔", price: 48.0, originalPrice: 96.0, rating: 4.7, readers: 2150, tags: ["趋势", "系统", "策略"], description: "完整的趋势交易体系，从识别趋势到执行交易。", category: "trend" },
+
+  // 交易心理
+  { id: 10, title: "交易心理分析", author: "罗尔·弗兰克", price: 44.9, originalPrice: 88.0, rating: 4.8, readers: 2780, tags: ["心理", "纪律", "博弈"], description: "抖破交易心理障碍，建立科学的交易心态与纪律。", category: "psychology", isHot: true },
+  { id: 11, title: "88种股市陷阱", author: "克林格尔", price: 32.0, originalPrice: 65.0, rating: 4.5, readers: 2120, tags: ["陷阱", "规避", "心态"], description: "识别常见交易陷阱，让你少走弯路。", category: "psychology" },
+  { id: 12, title: "战胜庄家", author: "青木", price: 25.0, originalPrice: 50.0, rating: 4.6, readers: 3650, tags: ["博弈", "庄家", "心态"], description: "入市必读，理解庄家思维，打造强大交易心态。", category: "psychology", isHot: true },
+
+  // 量化策略
+  { id: 13, title: "量化交易入门实战", author: "Ernest Chan", price: 54.0, originalPrice: 108.0, rating: 4.7, readers: 1650, tags: ["量化", "入门", "策略"], description: "量化交易基础教程，从策略设计到回测实战。", category: "quant", isNew: true },
+  { id: 14, title: "5分钟动量交易系统", author: "蓝翁居士", price: 28.0, originalPrice: 56.0, rating: 4.4, readers: 1380, tags: ["动量", "系统", "短线"], description: "简单高效的短线交易系统，适合业余投资者。", category: "quant" },
+  { id: 22, title: "量化策略设计与回测", author: "李文立", price: 68.0, originalPrice: 136.0, rating: 4.6, readers: 1120, tags: ["量化", "策略设计", "回测"], description: "深入浅出的量化策略设计教程，涵盖回测、优化、风控全流程。", category: "quant" },
+
+  // 期货衍生品
+  { id: 2, title: "28条期货交易法则", author: "Canter", price: 29.9, originalPrice: 59.9, rating: 4.7, readers: 1560, tags: ["期货", "风控", "规则"], description: "浓缩期货交易核心法则，助你避开致命交易陷阱。", category: "futures" },
+  { id: 15, title: "1000%的男人", author: "期货冠军奇迹", price: 49.0, originalPrice: 98.0, rating: 4.8, readers: 2890, tags: ["期货", "传奇", "实战"], description: "期货冠军的买卖方法，倾尽全力的实战经验分享。", category: "futures", isHot: true },
+  { id: 16, title: "期货市场技术分析", author: "约翰·迈吉", price: 55.0, originalPrice: 110.0, rating: 4.6, readers: 1240, tags: ["期货", "技术", "经典"], description: "技术分析圣经之期货篇，深入浅出解析期货市场。", category: "futures" },
+  { id: 23, title: "期货交易策略大全", author: "李威林", price: 42.0, originalPrice: 84.0, rating: 4.5, readers: 1350, tags: ["期货", "策略", "实战"], description: "多种实战策略详解，包括套利、对冲、趋势等。", category: "futures" },
+
+  // 投资理念
+  { id: 4, title: "黄金游戏（一）从A股获利", author: "占豪", price: 49.9, originalPrice: 99.0, rating: 4.9, readers: 3890, tags: ["A股", "投资策略", "趋势"], description: "解读A股市场运行规律，构建稳健获利交易体系。", category: "philosophy", isHot: true },
+  { id: 17, title: "投资最重要的事", author: "奥斯卡·黑希尔", price: 65.0, originalPrice: 128.0, rating: 4.9, readers: 4500, tags: ["价值投资", "哲学", "经典"], description: "投资大师的智慧结晶，谈投资的本质与人生哲学。", category: "philosophy", isHot: true, isNew: true },
+  { id: 18, title: "25条股票投资黄金法则", author: "威廉·欧纳尔", price: 22.0, originalPrice: 45.0, rating: 4.5, readers: 2760, tags: ["原则", "法则", "投资"], description: "经典的投资原则汇编，单纯而有力的交易规则。", category: "philosophy" },
+];
+
+export const categoryMap: Record<string, Category> = {};
+categories.forEach((cat) => { categoryMap[cat.id] = cat; });
+
+export const categoryDetailData: Record<string, { title: string; subtitle: string }> = {
+  "k-line": { title: "K线技术", subtitle: "从入门到精通的K线分析全体系，掌握市场语言" },
+  "trend": { title: "趋势分析", subtitle: "识别市场方向，把握趋势交易的精髓" },
+  "psychology": { title: "交易心理", subtitle: "打造强大交易心态，突破心理瓶颈" },
+  "quant": { title: "量化策略", subtitle: "用数据和算法驱动交易决策" },
+  "futures": { title: "期货衍生品", subtitle: "深入期货市场，掌握衍生品交易技巧" },
+  "philosophy": { title: "投资理念", subtitle: "汲取大师智慧，建立自己的投资哲学体系" },
+};
