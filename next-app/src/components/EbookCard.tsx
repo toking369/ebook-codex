@@ -1,13 +1,12 @@
-"use client";
+﻿"use client";
 
-import { useSyncExternalStore } from "react";
+import { useSyncExternalStore, useCallback } from "react";
+import { useRouter } from "next/navigation";
 
 interface Book {
   id: number;
   title: string;
   author: string;
-  price: number;
-  originalPrice: number;
   rating: number;
   readers: number;
   tags: string[];
@@ -49,9 +48,9 @@ function getThemeSnapshot() {
 }
 
 export default function EbookCard({ book }: { book: Book }) {
+  const router = useRouter();
   const isDark = useSyncExternalStore(subscribeToTheme, getThemeSnapshot, () => true);
 
-  const discount = Math.round((1 - book.price / book.originalPrice) * 100);
   const themes = isDark ? coverThemesDark : coverThemesLight;
   const theme = themes[book.id] || themes[1];
   const a = theme.accentColor;
@@ -62,7 +61,7 @@ export default function EbookCard({ book }: { book: Book }) {
   const starEmpty = isDark ? "0.15" : "0.25";
 
   return (
-    <div className="group card-glow bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl overflow-hidden transition-all duration-500 cursor-pointer hover:scale-[1.02] hover:-translate-y-1">
+    <div className="group card-glow bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl overflow-hidden transition-all duration-500 cursor-pointer hover:scale-[1.02] hover:-translate-y-1" onClick={() => router.push("/ebook/" + book.id + "/read")}>
       <div className={"relative aspect-[3/4] bg-gradient-to-br " + theme.gradient + " overflow-hidden"}>
         <div className="absolute inset-0 opacity-30 group-hover:opacity-50 transition-opacity duration-700" style={{background: "radial-gradient(circle at 30% 20%, " + a + "22 0%, transparent 50%), radial-gradient(circle at 70% 80%, " + a + "11 0%, transparent 40%)"}} />
         <div className={"absolute inset-0 opacity-[" + theme.gridOpacity + "]"} style={{backgroundImage: "linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px)", backgroundSize: "24px 24px"}} />
@@ -74,12 +73,7 @@ export default function EbookCard({ book }: { book: Book }) {
           </div>
         </div>
         <div className="absolute top-3 right-3 z-10">
-          <div className="relative w-[52px] h-[52px] flex items-center justify-center">
-            <svg viewBox="0 0 52 52" className="absolute inset-0 w-full h-full" style={{filter: "drop-shadow(0 0 6px " + a + "60)"}}>
-              <polygon points="26,2 38,12 38,30 26,50 14,30 14,12" fill={a} />
-            </svg>
-            <span className="relative z-10 text-white text-[11px] font-black leading-tight text-center">-{discount}<br /><span className="text-[8px]">OFF</span></span>
-          </div>
+          <span className="px-2.5 py-1 rounded-md text-[10px] font-bold text-white" style={{backgroundColor: a}}>免费</span>
         </div>
         <div className="absolute inset-0 flex flex-col items-center justify-center px-8 z-[1]">
           <div className="w-16 h-[2px] mb-5 rounded-full" style={{background: "linear-gradient(90deg, transparent, " + a + "80, transparent)"}} />
@@ -126,9 +120,9 @@ export default function EbookCard({ book }: { book: Book }) {
           <span className="text-[10px] text-[var(--text-muted)]">(人读过)</span>
         </div>
         <div className="flex items-center justify-between">
-          <div className="flex items-baseline gap-1.5"><span className="text-lg font-black" style={{color: a}}>￥{book.price}</span><span className="text-[10px] text-[var(--text-muted)] line-through">￥{book.originalPrice}</span></div>
-          <button className="px-4 py-1.5 rounded-lg text-xs font-bold transition-all duration-300 group/btn cursor-pointer" style={{backgroundColor: a + "15", color: a, border: "1px solid " + a + "30"}}
-          >立即购买</button>
+          <span className="px-3 py-1 rounded-lg text-xs font-bold" style={{backgroundColor: a + "15", color: a}}>免费</span>
+          <span className="px-4 py-1.5 rounded-lg text-xs font-bold transition-all duration-300" style={{backgroundColor: a + "15", color: a, border: "1px solid " + a + "30", cursor: "pointer"}}
+          >立即阅读</span>
         </div>
       </div>
     </div>

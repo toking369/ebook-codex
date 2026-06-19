@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
@@ -30,7 +30,7 @@ export default function Header() {
           : "bg-transparent"
       }`}
     >
-      <div className="cursor-pointer max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div className="cursor-pointer max-w-7xl mx-auto h-16 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="cursor-pointer flex items-center group">
           <Logo />

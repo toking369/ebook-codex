@@ -1,16 +1,9 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 
-const categories = [
-  { id: "all", name: "全部", icon: "📚" },
-  { id: "k-line", name: "K线技术", icon: "📊" },
-  { id: "trend", name: "趋势分析", icon: "📈" },
-  { id: "psychology", name: "交易心理", icon: "🧠" },
-  { id: "quant", name: "量化策略", icon: "🤖" },
-  { id: "futures", name: "期货衍生品", icon: "⚡" },
-  { id: "philosophy", name: "投资理念", icon: "🎯" },
-];
+import { categories as allCats } from "../data/books";
+const categories = [{ id: "all", name: "全部", icon: "📚" }, ...allCats.map(c => ({ id: c.id, name: c.name, icon: c.icon }))];
 
 interface EbooksHeroProps {
   activeCategory: string;

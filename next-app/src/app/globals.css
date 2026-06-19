@@ -1,4 +1,4 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 
 :root {
   /* Cyberpunk Dark Theme with Chinese Red accents */
@@ -273,4 +273,132 @@ html.transitioning *::after {
 ::selection {
   background: rgba(220, 30, 30, 0.3);
   color: white;
+}
+
+
+
+/* Ebook Reader Styles — 可读性优先排版规范 */
+.ebook-reader-content {
+  padding: 1.5em 2em 2em 1.5em;
+  font-family: 'Noto Serif SC', 'Source Han Serif SC', Georgia, 'Times New Roman', serif;
+
+}
+
+/* 正文字体 — 使用相对单位 em，屏幕自适应 */
+.ebook-reader-content p {
+  font-size: 1em;
+  line-height: 1.75;
+  margin-bottom: 0.5em;
+  text-align: justify;
+  text-justify: inter-ideograph;
+  word-spacing: 0.05em;
+  color: var(--text-primary);
+}
+
+/* 段间距 = 两个字宽，通过 + p 相邻选择器实现 */
+.ebook-reader-content p + p {
+  text-indent: 2em;
+  margin-top: 0.8em;
+}
+
+/* 标题层级 — 逐级递减 */
+.ebook-reader-content h1 {
+  font-size: 1.6em;
+  font-weight: 700;
+  text-align: center;
+  margin: 2em 0 1em;
+  padding-bottom: 0.5em;
+  border-bottom: 2px solid var(--red-primary);
+  color: var(--red-primary);
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+}
+
+.ebook-reader-content h2 {
+  font-size: 1.25em;
+  font-weight: 700;
+  margin: 2em 0 0.8em;
+  padding: 0.4em 0 0.3em 0.6em;
+  border-left: 3px solid var(--red-primary);
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.ebook-reader-content h3 {
+  font-size: 1.1em;
+  font-weight: 600;
+  margin: 1.5em 0 0.6em;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* 粗体与斜体 */
+.ebook-reader-content strong {
+  font-weight: 700;
+  color: var(--red-primary);
+}
+
+.ebook-reader-content em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+/* 引用 */
+.ebook-reader-content blockquote {
+  border-left: 3px solid var(--red-primary);
+  padding: 0.6em 1em;
+  margin: 1.2em 0;
+  background: var(--bg-card);
+  border-radius: 4px;
+  color: var(--text-secondary);
+  font-style: italic;
+  line-height: 1.7;
+  font-size: 0.95em;
+}
+
+/* 分割线 */
+.ebook-reader-content hr {
+  border: none;
+  border-top: 1px dashed var(--border-color);
+  margin: 2em auto;
+  opacity: 0.25;
+  max-width: 40%;
+}
+
+/* 列表 */
+.ebook-reader-content ul {
+  list-style: none;
+  padding-left: 0.5em;
+  margin: 1em 0;
+}
+
+.ebook-reader-content ul li {
+  position: relative;
+  padding-left: 1.5em;
+  margin-bottom: 0.4em;
+  color: var(--text-primary);
+  line-height: 1.7;
+  font-size: 1em;
+}
+
+.ebook-reader-content ul li::before {
+  content: "◆";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 0.45em;
+  color: var(--red-primary);
+  opacity: 0.6;
+  line-height: 3.2;
+}
+
+/* 行内代码 */
+.ebook-reader-content code {
+  font-family: 'Fira Code', 'Consolas', monospace;
+  font-size: 0.9em;
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+  background: var(--bg-card);
+  color: var(--red-light);
 }
